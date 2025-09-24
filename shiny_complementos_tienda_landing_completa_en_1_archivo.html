@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shiny Complementos | Velas, Difusores y Combos</title>
+  <meta name="description" content="Velas de soja, difusores y combos de regalo. Envíos a todo el país. Hecho a mano en Argentina." />
+  <link rel="icon" href="img/logo-shiny.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Paleta basada en tu marca/IG */
+      --bg: #ffffff;            /* blanco */
+      --bg-soft: #F5F2ED;       /* beige pastel muy claro */
+      --beige: #E7DCCA;         /* beige */
+      --mint: #DDEEE8;          /* verde menta muy suave */
+      --text: #111111;          /* negro */
+      --muted: #6b6b6b;         /* gris texto secundario */
+      --accent: #0F0F0F;        /* acento negro para CTAs */
+      --radius: 16px;
+      --shadow: 0 6px 24px rgba(0,0,0,.06);
+      --max: 1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.5;
+      overflow-x:hidden; /* evita scroll lateral en móvil */
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Layout helpers */
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+    .grid{display:grid;gap:22px}
+
+    /* Header */
+    .topbar{position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #eee}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:40px;height:40px;object-fit:contain;border:1px solid #111;border-radius:4px;padding:2px}
+    .brand b{letter-spacing:.35em}
+    .nav a.link{padding:10px 12px;border-radius:10px}
+    .nav a.cta{padding:10px 14px;border:1px solid #111;border-radius:999px}
+
+    /* Hero */
+    .hero{background:linear-gradient(180deg,var(--bg-soft),#fff);padding:36px 0 14px}
+    .hero .card{display:grid;gap:18px;grid-template-columns:1.1fr .9fr;align-items:center}
+    .pill{display:inline-flex;align-items:center;gap:8px;background:var(--mint);border-radius:999px;padding:8px 12px;font-weight:600;font-size:.9rem}
+    h1{font-size:clamp(28px,5vw,46px);margin:6px 0 12px;letter-spacing:.06em}
+    .lede{color:var(--muted);max-width:60ch}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .badge{background:#fff;border:1px solid #eaeaea;border-radius:999px;padding:8px 12px;font-size:.88rem}
+    .hero-img{border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+
+    /* Section titles */
+    .section{padding:34px 0}
+    .section h2{font-size:clamp(22px,4vw,32px);margin:0 0 6px}
+    .section p.lead{color:var(--muted);margin:0 0 18px}
+
+    /* Product cards */
+    .products{grid-template-columns:repeat(3,1fr)}
+    .card-prod{background:#fff;border:1px solid #eee;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+    .card-prod .imgbox{aspect-ratio:4/3;overflow:hidden}
+    .card-prod .imgbox img{width:100%;height:100%;object-fit:cover}
+    .card-prod .txt{padding:14px}
+    .price{display:flex;align-items:center;gap:10px;margin:6px 0 10px}
+    .price b{font-size:1.05rem}
+    .chip{background:var(--bg-soft);border:1px solid #e8e5de;border-radius:8px;padding:4px 8px;font-size:.8rem}
+
+    .actions{margin-top:auto;display:flex;gap:10px;padding:0 14px 14px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid #111;background:#111;color:#fff;font-weight:700}
+    .btn.light{background:#fff;color:#111}
+    .btn.block{width:100%}
+
+    /* Combos band */
+    .band{background:var(--bg-soft);border:1px dashed #e2ddd2;border-radius:16px;padding:16px}
+
+    /* How it works / FAQs */
+    .steps{grid-template-columns:repeat(3,1fr)}
+    .step{background:#fff;border:1px solid #eee;border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+
+    /* Gallery */
+    .gallery{grid-template-columns:repeat(4,1fr)}
+    .gallery img{border-radius:12px}
+
+    /* Footer */
+    footer{background:#fff;border-top:1px solid #eee}
+    .foot{display:grid;gap:18px;grid-template-columns:1.3fr .7fr}
+    .newsletter{display:flex;gap:8px}
+    .newsletter input{flex:1;padding:12px;border-radius:10px;border:1px solid #ddd}
+
+    /* WhatsApp bubble */
+    .wa{position:fixed;right:16px;bottom:16px;background:#25D366;color:#fff;padding:14px 16px;border-radius:999px;font-weight:700;box-shadow:0 10px 24px rgba(0,0,0,.15);z-index:50}
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero .card{grid-template-columns:1fr}
+      .products{grid-template-columns:repeat(2,1fr)}
+      .steps{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .foot{grid-template-columns:1fr}
+    }
+    @media (max-width: 520px){
+      .products{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#inicio">
+        <img src="img/logo-shiny.png" alt="Shiny Complementos"/>
+        <b>SHINY&nbsp;COMPLEMENTOS</b>
+      </a>
+      <nav class="menu">
+        <a class="link" href="#velas">Velas</a>
+        <a class="link" href="#difusores">Difusores</a>
+        <a class="link" href="#combos">Combos</a>
+        <a class="cta" href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="inicio" class="hero">
+    <div class="wrap">
+      <div class="card">
+        <div>
+          <span class="pill">Diseños que inspiran y acompañan ✨</span>
+          <h1>Velas de soja & difusores <br/>para crear <u>rituales cotidianos</u>.</h1>
+          <p class="lede">Hechas a mano, con fragancias cálidas y una estética minimal. Envíos a todo el país y opciones listas para regalo.</p>
+          <div class="badges">
+            <span class="badge">🕯️ Cera de soja 100%</span>
+            <span class="badge">🚚 Envíos a todo el país</span>
+            <span class="badge">🎁 Packaging listo para regalar</span>
+          </div>
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="#velas">Comprar velas</a>
+            <a class="btn light" href="#combos">Ver combos</a>
+          </div>
+        </div>
+        <div class="hero-img">
+          <img src="img/vela-box-1.jpg" alt="Caja con vela y flores secas"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VELAS DESTACADAS -->
+  <section id="velas" class="section">
+    <div class="wrap">
+      <h2>Velas destacadas</h2>
+      <p class="lead">Fragancias suaves, envase de vidrio y tapa de madera. Ideal para casa u oficina.</p>
+      <div class="grid products">
+        <!-- Producto 1 -->
+        <article class="card-prod">
+          <div class="imgbox"><img src="img/vela-blowawish-1.jpg" alt="Vela Blow a wish" loading="lazy"></div>
+          <div class="txt">
+            <h3>Vela “Blow a wish”</h3>
+            <div class="price"><b>$ Consultar</b> <span class="chip">225g</span></div>
+            <p class="lead" style="margin:0">Cálida, minimal y lista para regalar.</p>
+          </div>
+          <div class="actions">
+            <a class="btn block" target="_blank" href="https://wa.me/549000000000?text=Hola%20Shiny!%20Quiero%20la%20Vela%20Blow%20a%20wish">Comprar por WhatsApp</a>
+          </div>
+        </article>
+        <!-- Producto 2 -->
+        <article class="card-prod">
+          <div class="imgbox"><img src="img/vela-vela-y-box.jpg" alt="Vela con tarjeta candle care" loading="lazy"></div>
+          <div class="txt">
+            <h3>Vela clásica</h3>
+            <div class="price"><b>$ Consultar</b> <span class="chip">Vidrio + tapa madera</span></div>
+            <p class="lead" style="margin:0">Incluye tarjeta Candle Care.</p>
+          </div>
+          <div class="actions">
+            <a class="btn block" target="_blank" href="https://wa.me/549000000000?text=Hola%20Shiny!%20Quiero%20una%20Vela%20cl%C3%A1sica">Comprar por WhatsApp</a>
+          </div>
+        </article>
+        <!-- Producto 3 -->
+        <article class="card-prod">
+          <div class="imgbox"><img src="img/vela-cafe.jpg" alt="Vela con café" loading="lazy"></div>
+          <div class="txt">
+            <h3>Vela edición café</h3>
+            <div class="price"><b>$ Consultar</b> <span class="chip">Aroma vainilla & café</span></div>
+            <p class="lead" style="margin:0">Perfecta para tu ritual de la mañana.</p>
+          </div>
+          <div class="actions">
+            <a class="btn block" target="_blank" href="https://wa.me/549000000000?text=Hola%20Shiny!%20Quiero%20la%20Vela%20edici%C3%B3n%20caf%C3%A9">Comprar por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFUSORES -->
+  <section id="difusores" class="section" style="background:var(--bg-soft)">
+    <div class="wrap">
+      <h2>Difusores</h2>
+      <p class="lead">Aromatizá tus espacios con varillas de fibra de alta difusión.</p>
+      <div class="grid products">
+        <article class="card-prod">
+          <div class="imgbox"><img src="img/difusor-rosa.jpg" alt="Difusor de varillas" loading="lazy"></div>
+          <div class="txt">
+            <h3>Difusor de varillas</h3>
+            <div class="price"><b>$ Consultar</b> <span class="chip">200 ml</span></div>
+            <p class="lead" style="margin:0">Fragancias: Vainilla, Floral, Spa.</p>
+          </div>
+          <div class="actions">
+            <a class="btn block" target="_blank" href="https://wa.me/549000000000?text=Hola%20Shiny!%20Quiero%20un%20Difusor%20de%20varillas">Comprar por WhatsApp</a>
+          </div>
+        </article>
+        <article class="card-prod">
+          <div class="imgbox"><img src="img/difusor-citrico.jpg" alt="Difusor Citrico" loading="lazy"></div>
+          <div class="txt">
+            <h3>Difusor cítrico</h3>
+            <div class="price"><b>$ Consultar</b> <span class="chip">200 ml</span></div>
+            <p class="lead" style="margin:0">Energizante y fresco.</p>
+          </div>
+          <div class="actions">
+            <a class="btn block" target="_blank" href="https://wa.me/549000000000?text=Hola%20Shiny!%20Quiero%20un%20Difusor%20c%C3%ADtrico">Comprar por WhatsApp</a>
+          </div>
+        </article>
+        <article class="card-prod">
+          <div class="imgbox"><img src="img/difusor-set.jpg" alt="Set de difusor" loading="lazy"></div>
+          <div class="txt">
+            <h3>Set mini difusor</h3>
+            <div class="price"><b>$ Consultar</b> <span class="chip">Ideal para regalo</span></div>
+            <p class="lead" style="margin:0">Incluye varillas y tarjeta.</p>
+          </div>
+          <div class="actions">
+            <a class="btn block" target="_blank" href="https://wa.me/549000000000?text=Hola%20Shiny!%20Quiero%20el%20Set%20mini%20difusor">Comprar por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMBOS -->
+  <section id="combos" class="section">
+    <div class="wrap">
+      <div class="band">
+        <h2>Combos y boxes</h2>
+        <p class="lead">Armamos tu box con vela + difusor + algo rico ☕🍫. También personalizamos para empresas.</p>
+        <div class="grid products">
+          <article class="card-prod">
+            <div class="imgbox"><img src="img/combo-cafe-ouro.jpg" alt="Combo café y vela" loading="lazy"></div>
+            <div class="txt">
+              <h3>Combo Coffee Rituals</h3>
+              <div class="price"><b>$ Consultar</b> <span class="chip">Café OURO + Vela</span></div>
+              <p class="lead" style="margin:0">Incluye tarjeta Candle Care.</p>
+            </div>
+            <div class="actions"><a class="btn block" target="_blank" href="https://wa.me/549000000000?text=Hola%20Shiny!%20Quiero%20el%20Combo%20Coffee%20Rituals">Lo quiero</a></div>
+          </article>
+          <article class="card-prod">
+            <div class="imgbox"><img src="img/combo-nescafe.jpg" alt="Combo Nescafe + vela + taza" loading="lazy"></div>
+            <div class="txt">
+              <h3>Combo Clásico</h3>
+              <div class="price"><b>$ Consultar</b> <span class="chip">Vela + Taza + Café</span></div>
+              <p class="lead" style="margin:0">Empaque cuidadoso, flores secas.</p>
+            </div>
+            <div class="actions"><a class="btn block" target="_blank" href="https://wa.me/549000000000?text=Hola%20Shiny!%20Quiero%20el%20Combo%20Cl%C3%A1sico">Lo quiero</a></div>
+          </article>
+          <article class="card-prod">
+            <div class="imgbox"><img src="img/combo-golosinas.jpg" alt="Combo dulce y vela" loading="lazy"></div>
+            <div class="txt">
+              <h3>Combo Sweet</h3>
+              <div class="price"><b>$ Consultar</b> <span class="chip">Vela + Dulces</span></div>
+              <p class="lead" style="margin:0">Lista para sorprender.</p>
+            </div>
+            <div class="actions"><a class="btn block" target="_blank" href="https://wa.me/549000000000?text=Hola%20Shiny!%20Quiero%20el%20Combo%20Sweet">Lo quiero</a></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo comprar / FAQ corto -->
+  <section class="section" style="background:var(--bg-soft)">
+    <div class="wrap">
+      <h2>Cómo comprar</h2>
+      <div class="grid steps">
+        <div class="step"><h3>1) Elegí</h3><p>Buscá tu vela, difusor o combo. Si querés personalización para regalos o empresas, escribinos.</p></div>
+        <div class="step"><h3>2) Hablamos</h3><p>Hace clic en <b>Comprar por WhatsApp</b> y coordinamos fragancias, stock y envío.</p></div>
+        <div class="step"><h3>3) ¡Listo!</h3><p>Preparamos todo con amor y lo despachamos. Retiro por zona a coordinar.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería / IG mood -->
+  <section class="section">
+    <div class="wrap">
+      <h2>Un poco de nuestro mood</h2>
+      <p class="lead">Seguinos en Instagram: <a href="https://www.instagram.com/shiny.complementos/" target="_blank">@shiny.complementos</a></p>
+      <div class="grid gallery">
+        <img src="img/combo-cafe-ouro.jpg" alt="Caja con ramo" loading="lazy"/>
+        <img src="img/combo-golosinas.jpg" alt="Cajas de regalo" loading="lazy"/>
+        <img src="img/combo-nescafe.jpg" alt="Vela con candle care" loading="lazy"/>
+        <img src="img/vela-cafe.jpg" alt="Set termo + copa" loading="lazy"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contacto" class="section">
+    <div class="wrap foot">
+      <div>
+        <h3>SHINY COMPLEMENTOS</h3>
+        <p class="lead">Consultas y pedidos por WhatsApp o MD de Instagram. Envíos a todo el país.</p>
+        <p>Instagram: <a target="_blank" href="https://www.instagram.com/shiny.complementos/">@shiny.complementos</a></p>
+        <p>Email: <a href="mailto:hola@shiny.com">hola@shiny.com</a></p>
+      </div>
+      <div>
+        <h4>¿Novedades?</h4>
+        <form class="newsletter" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
+          <input type="email" placeholder="tu@email.com" required>
+          <button class="btn" type="submit">Suscribirme</button>
+        </form>
+      </div>
+    </div>
+    <div class="wrap" style="border-top:1px solid #eee;margin-top:14px;padding-top:14px;color:var(--muted);font-size:.9rem">
+      <span>© <span id="y"></span> Shiny Complementos — Hecho a mano con amor 🕯️</span>
+    </div>
+  </footer>
+
+  <!-- WhatsApp floating -->
+  <a class="wa" target="_blank" href="https://wa.me/549000000000?text=Hola%20Shiny!%20Vengo%20de%20la%20web%20y%20quiero%20hacer%20un%20pedido%20🙂">WhatsApp</a>
+
+  <script>
+    // año dinámico
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
