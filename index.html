@@ -8,6 +8,10 @@
   <link rel="icon" href="img/logo-shiny.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
   <style>
     :root{
       /* Paleta basada en tu marca/IG */
@@ -160,7 +164,26 @@
       <div class="grid products">
         <!-- Producto 1 -->
         <article class="card-prod">
-          <div class="imgbox"><img src="img/vela-blowawish-1.jpg" alt="Vela clásica Wish" loading="lazy"></div>
+          <div class="imgbox" style="max-width: 250px; margin: 0 auto;">
+  <!-- Slider -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide">
+        <img src="img/Vela clasica sin tapa.jpg" alt="Vela clásica wish">
+      </div>
+      <div class="swiper-slide">
+        <img src="img/vela-blowawish-1.jpg" alt="Vela clásica wish 2">
+      </div>
+      <div class="swiper-slide">
+        <img src="img/vela balcon.tmp" alt="Vela clásica wish 3">
+      </div>
+    </div>
+
+    <!-- Paginación -->
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
           <div class="txt">
             <h3>Vela clásica “wish”</h3>
             <div class="price"><b>$ Consultar</b> <span class="chip">225g</span></div>
